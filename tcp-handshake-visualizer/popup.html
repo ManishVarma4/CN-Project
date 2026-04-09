@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TCP Handshake Visualizer</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-top">
+        <h1>TCP Visualizer</h1>
+        <div id="status-badge" class="badge">Loading</div>
+      </div>
+      <div id="domain-display" class="domain truncate" title="Request Domain">Waiting for request...</div>
+      <div id="connection-flow" class="flow-indicator text-muted"></div>
+    </header>
+
+    <main>
+      <div class="visualization-card glass-panel">
+        <div class="node-container">
+          <div class="node client-node">
+            <div class="icon-wrapper glass">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+            <span class="label">Client</span>
+          </div>
+          
+          <div class="channel">
+            <div class="connection-line"></div>
+            
+            <div id="packet-syn" class="packet syn-packet" title="Client initiates connection">
+              <span>SYN</span>
+            </div>
+            <div id="packet-syn-ack" class="packet syn-ack-packet" title="Server acknowledges request">
+              <span>SYN-ACK</span>
+            </div>
+            <div id="packet-ack" class="packet ack-packet" title="Connection established">
+              <span>ACK</span>
+            </div>
+          </div>
+          
+          <div class="node server-node">
+            <div class="icon-wrapper glass">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            </div>
+            <span class="label">Server</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="details-card glass-panel">
+        <div class="detail-row">
+          <span class="detail-label">Status:</span>
+          <span id="detail-status" class="detail-value text-muted">Awaiting Request</span>
+        </div>
+        
+        <hr class="divider">
+        
+        <div class="detail-row">
+          <span class="detail-label title">Phase Timings:</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="detail-label">SYN Time:</span>
+          <span id="timing-syn" class="detail-value">-- ms</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">SYN-ACK / TTFB:</span>
+          <span id="timing-syn-ack" class="detail-value">-- ms</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">ACK Time:</span>
+          <span id="timing-ack" class="detail-value">-- ms</span>
+        </div>
+        
+        <hr class="divider">
+        
+        <div class="detail-row">
+          <span class="detail-label title">Overview:</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Protocol:</span>
+          <span id="detail-protocol" class="detail-value">--</span>
+        </div>
+        <div class="detail-row hidden">
+          <!-- We show TTFB alongside SYN-ACK, but have explicit TTFB here too -->
+          <span class="detail-label">TTFB:</span>
+          <span id="detail-ttfb" class="detail-value text-accent">-- ms</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Total Latency:</span>
+          <span id="detail-total" class="detail-value text-accent">-- ms</span>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <button id="replay-btn" class="btn primary-btn glass">Replay Animation</button>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

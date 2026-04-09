@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Alert - Website Blocked</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="blocked-body">
+  <div class="blocked-card">
+    <div class="alert-icon">🛑</div>
+    <h1 class="blocked-title">Access Blocked</h1>
+    <p class="blocked-message">
+      Mini Firewall has blocked this website for security reasons based on your designated blocklist.
+    </p>
+    
+    <div class="domain-highlight" id="blockedDomain">suspicious-site.com</div>
+    
+    <div>
+      <button class="btn-back" id="goBackBtn">Go Back to Safety</button>
+    </div>
+  </div>
+
+  <script>
+    // Extract domain from URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const domain = params.get('domain');
+    
+    // Basic protection against XSS by using textContent
+    if (domain) {
+      document.getElementById('blockedDomain').textContent = domain;
+    }
+
+    // Increment blocked counter each time this page is loaded
+    chrome.storage.sync.get(['blockedCount'], (data) => {
+      const current = data.blockedCount || 0;
+      chrome.storage.sync.set({ blockedCount: current + 1 });
+    });
+
+    document.getElementById('goBackBtn').addEventListener('click', () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.close(); // Close tab if there's no history back
+      }
+    });
+  </script>
+</body>
+</html>

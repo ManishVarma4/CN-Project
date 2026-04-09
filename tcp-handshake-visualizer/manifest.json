@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "TCP Handshake Visualizer",
+  "version": "1.0",
+  "description": "Visualizes the TCP 3-way handshake process for network requests.",
+  "permissions": [
+    "webRequest",
+    "storage",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "View TCP Handshake"
+  }
+}

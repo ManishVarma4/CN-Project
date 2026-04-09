@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Firewall</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="popup-body">
+  
+  <header>
+    <h1>
+      <span class="firewall-icon">🛡️</span>
+      Mini Firewall
+    </h1>
+    <div class="toggle-wrapper">
+      <span class="toggle-label" id="statusLabel">Active</span>
+      <label class="switch">
+        <input type="checkbox" id="protectionToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+  </header>
+
+  <div class="metrics-card">
+    <div>
+      <div class="metric-l">Blocked Threats</div>
+      <div class="metric-v" id="blockedCount">0</div>
+    </div>
+    <div style="text-align: right;">
+      <div class="metric-l">Blacklisted</div>
+      <div class="metric-v" style="color: var(--text-main);" id="listCount">0</div>
+    </div>
+  </div>
+
+  <form class="add-domain-form" id="addDomainForm">
+    <input type="text" id="domainInput" class="domain-input" placeholder="e.g. badsite.com" required>
+    <button type="submit" class="btn-add">Add</button>
+  </form>
+
+  <div class="list-header">Blocked Domains</div>
+  <ul class="domain-list" id="domainList">
+    <!-- Populated by JavaScript -->
+  </ul>
+
+  <script src="popup.js"></script>
+</body>
+</html>

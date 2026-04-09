@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Packet Visualizer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="libs/chart.umd.js"></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="title">
+      <span class="title-icon">📊</span>
+      NetVisualizer Pro
+    </div>
+    <div class="controls">
+      <button class="btn" id="exportBtn" title="Export as CSV">Export Logs</button>
+      <button class="btn" id="clearBtn">Clear</button>
+      <label class="switch" title="Toggle Tracking">
+        <input type="checkbox" id="trackingToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+  </header>
+
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Data Transferred</div>
+      <div class="metric-val" id="totalSize">0.00 MB</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Captured Requests</div>
+      <div class="metric-val" id="totalReqs">0</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="packetChart"></canvas>
+  </div>
+
+  <!-- Domain Breakdown -->
+  <div class="domain-breakdown">
+    <div class="section-title">Top Data Consuming Domains 🌍</div>
+    <div id="domainList" class="domain-list"></div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filter-bar">
+    <div class="section-title" style="margin:0;">Recent Traffic</div>
+    <select id="filterSelect" class="dropdown">
+      <option value="all">All</option>
+      <option value="large">Large Packets (>1MB)</option>
+      <option value="slow">Slow Requests (>1s)</option>
+    </select>
+  </div>
+
+  <div class="request-list" id="reqList">
+    <!-- Populated via popup.js -->
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

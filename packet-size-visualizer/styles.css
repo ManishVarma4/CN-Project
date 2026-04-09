@@ -1,0 +1,209 @@
+:root {
+  --bg-main: #0f1115;
+  --bg-card: #1c1f26;
+  --bg-hover: #2d3748;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --accent-color: #3b82f6; 
+  --accent-glow: rgba(59, 130, 246, 0.5);
+  --success: #10b981; /* Download */
+  --warning: #f59e0b; /* Slow */
+  --upload: #8b5cf6;  /* Upload */
+  --danger: #ef4444;  /* Large */
+  --border-color: #334155;
+  --radius: 12px;
+  --transition: all 0.2s ease-in-out;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  width: 600px;
+  min-height: 500px;
+  overflow-x: hidden;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title-icon {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.btn:hover { background-color: var(--bg-hover); }
+
+/* Toggle Switch */
+.switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border-color); transition: var(--transition); border-radius: 20px; }
+.slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: var(--transition); border-radius: 50%; }
+input:checked + .slider { background-color: var(--success); }
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* Metrics Cards */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.metric-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.metric-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.metric-val { font-size: 1.75rem; font-weight: 800; color: var(--accent-color); }
+
+/* Chart Container */
+.chart-container {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 24px;
+  position: relative;
+  height: 250px;
+  width: 100%;
+}
+
+/* Domain Breakdown */
+.domain-breakdown { margin-bottom: 24px; }
+.domain-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 140px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.domain-item {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg-card);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  border: 1px solid transparent;
+}
+.domain-name { color: var(--text-main); font-weight: 500; font-family: monospace; }
+.domain-size { color: var(--accent-color); font-weight: 600; font-family: monospace; }
+
+/* Main List Filters */
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.dropdown {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 6px 10px;
+  outline: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.section-title { font-size: 1rem; font-weight: 600; color: var(--text-muted); margin-bottom: 12px; }
+
+/* Request List */
+.request-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-main); }
+::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
+
+.req-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 100px;
+  align-items: center;
+  background-color: var(--bg-card);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  border-left: 3px solid transparent;
+}
+
+.req-item.large-packet { border-left-color: var(--danger); background-color: rgba(239, 68, 68, 0.05); }
+.req-item.slow-packet { border-left-color: var(--warning); background-color: rgba(245, 158, 11, 0.05); }
+
+/* Direction/Method */
+.method-direction { font-weight: 700; font-family: monospace; display: flex; align-items: center; gap: 4px; }
+.method-get { color: var(--success); }
+.method-post { color: var(--upload); }
+.method-other { color: var(--text-muted); }
+
+/* Details (URL, Badges, Timings) */
+.req-details { display: flex; flex-direction: column; overflow: hidden; padding-right: 12px; gap: 4px; }
+.req-url-line { display: flex; align-items: center; gap: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: monospace;}
+.protocol-badge {
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.protocol-badge.https { color: var(--success); border-color: rgba(16, 185, 129, 0.4); }
+.protocol-badge.http { color: var(--warning); border-color: rgba(245, 158, 11, 0.4); }
+.req-url { color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Subtext for Timings */
+.req-sub { font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 8px; }
+.latency-val.slow { color: var(--warning); font-weight: bold; }
+
+.req-size { text-align: right; font-family: monospace; font-weight: 600; color: var(--text-muted); }
+.req-item.large-packet .req-size { color: var(--danger); }

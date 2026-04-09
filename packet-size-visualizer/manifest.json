@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Real-Time Packet Size Visualizer",
+  "version": "1.0.0",
+  "description": "Browser-based network monitoring tool to visualize outgoing and incoming packet sizes in real-time.",
+  "permissions": [
+    "webRequest",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Net Visualizer"
+  }
+}
